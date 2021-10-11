@@ -4,10 +4,112 @@
     <meta charset="UTF-8">
     <title>Malthusian Simulation</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function(){
+        $("#setPopulation").click(function(){
+            $("#population_setter").css("opacity","0");
+            $("#setPopulation").hide();
+            $("#hint").css("opacity","0");
+            setPopulation(slider);
+        })
+    })
+    </script>
 </head>
-<body>
-    <div id="simulation">
+<body onload="canvasSetup()">
+    <h1></h1>
+    <h1 class="center"> Malthusian Simulation </h1>
+    <p class="center" id="hint" style="margin-top: 10px; color:darkgray"> 1. Use slider to adjust initial population, then press Set to start the simulation. </p>
+
+    <!--legend-->
+    <div id="legend">
+        <h3>Legend</h3>
+            <li>The yellow rectangle: land.</li>
+            <li>Each dot: 10 people.</li>
+            <li>Size of dot: reflects income per person.</li>
+            <br>
+        <div id="notes">
+            <h3>Notes</h3>
+            <li style="color: black">Birthrate: determined by the income per person in the previous year.</li>
+            <li style="color: black">The technology multiplier is multiplied to the total income of each year.</li>
+            <li>Diminishing average product of labour is assumed.</li>
+        </div>
     </div>
-<script src="script.js"></script>
+
+    <!--Observations-->
+    <div id="observations">
+        <h3>Observations</h3>
+        <li>No matter the starting population, population tends towards the same equilibrium ≈ 3000 (given no tech development).</li>
+        <li>Tech developments only temporarily raise per person income, yet they permanently bring population to new equilibriums.</li>
+        <li>Diseases / massive drop in population increases per person income in the short run, but has little effect in the long run.</li>
+        <li>The per person income has always been around the same. It always returns to the equilibrium ≈ 15.</li>
+    </div>
+
+        <!-- setting the starting population -->
+    <div id="simulation">
+    <div id="population_setter" class="flex-container center" style="width:500px"> 
+        <p>0</p>
+        <input type="range" list="tickmarks" id="setPopu" name="setPopu" min="0" max="10000" value="0" step="500" onchange="updateSlider(this.value)">
+        <p>10000</p>
+    </div>
+    <div class="flex-container center" style="width:500px">
+        <div>Starting Population: </div>
+        <div id="popuNumber">0</div>
+        <div><button id="setPopulation" style="margin-left:5px"> set</button></div>
+    </div>
+    <br>
+    <br>
+
+    <!-- year buttons, canvas, and stats -->
+    <div id="canvas and stats" class="flex-container center" style="width:800px">
+    <div id="canvas and yearButtons" class="flex-container-ver">
+        <div id="yearButtons">
+            <!-- <div id="lastYearButton">
+                <button id="lastYear" onclick="lastYear()">Last Year</button>
+            </div> -->
+            <div id="nextYearButton" style="margin-left:20px">
+                <button id="nextYear" onclick="nextYear()">Next Year</button>
+                <label for="nextYear" style="color:darkgray"> 2.Click Next Year repeatedly to see how variables change.</label>
+            </div>
+        </div>
+        <canvas id="canvas" class="center" width="500" height="200"> 
+        </canvas>
+        <div id="disruptionButtons" class="flex-container-ver center">
+            <div id="technologyButton">
+                <button id="technology" onclick="techImprovement()">Improve Technology</button>
+                <label for="technology" style="color:darkgray">3. Click here to increase technology multiplier by 0.1.</label>
+            </div>
+            <div id="diseaseButton" onclick="disease()">
+                <button id="disease">Encounter Disease</button>
+                <label for="disease" style="color:darkgray"> 4. Click here to decrease population by a third.</label>
+            </div>
+        </div>
+    </div>
+    <div id="stats" style="height:200px">
+        <br>
+        <br>
+        <div class="flex-container">
+            <p>Year:  </p><p id="Year_"></p>
+        </div><div class="flex-container">
+            <p>Population: </p><p id="Popu_"></p>
+        </div><div id="tech" class="flex-container">
+            <p>Technology multiplier: </p><p id="Tech_"></p>
+        </div><div class="flex-container">
+            <p>Total income: </p><p id="tIncome_"></p>
+        </div><div class="flex-container">
+            <p>Per person income: </p><p id="ppIncome_"></p>
+        </div><div class="flex-container">
+            <p>Birth rate: </p><p id="Birth_"></p>
+        </div>
+    </div> 
+    </div>
+    <br>
+    </div>
+    <br>
+    <!-- reset -->
+    <button class="center" onclick="window.location.reload()">Reset Simulation</button>
+    <br>
+    <br>
 </body>
 </html>
