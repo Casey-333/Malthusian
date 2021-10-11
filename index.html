@@ -5,7 +5,41 @@
     <title>Malthusian Simulation</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<<<<<<< Updated upstream
 <body>
+=======
+<body onload="canvasSetup()">
+    <h1></h1>
+    <h1 class="center"> Malthusian Simulation </h1>
+    <p class="center" id="hint" style="margin-top: 10px; color:darkgray"> 1. Use slider to adjust initial population, then press Set to start the simulation. </p>
+
+    <!--legend-->
+    <div id="legend">
+        <h3>Legend</h3>
+            <li>The yellow rectangle: land.</li>
+            <li>Each dot: 10 people.</li>
+            <li>Size of dot: reflects income per person.</li>
+            <br>
+        <div id="notes">
+            <h3>Notes</h3>
+            <li>The average product of labour is assumed to diminish as population increases.</li>
+            <li style="color: black">Birthrate is determined by the income per person in the previous year.</li>
+            <li style="color: black">The technology multiplier is multiplied to the total income of each year.</li>
+            
+        </div>
+    </div>
+
+    <!--Observations-->
+    <div id="observations">
+        <h3>Observations</h3>
+        <li>No matter the starting population, population tends towards the same equilibrium ≈ 3000 (given no tech development).</li>
+        <li>Tech developments only temporarily raise per person income, yet they permanently bring population to new equilibriums.</li>
+        <li>Diseases / massive drop in population increases per person income in the short run, but has little effect in the long run.</li>
+        <li>The per person income has always been around the same. It always returns to the equilibrium ≈ 15.</li>
+    </div>
+
+        <!-- setting the starting population -->
+>>>>>>> Stashed changes
     <div id="simulation">
     </div>
 <script src="script.js"></script>
