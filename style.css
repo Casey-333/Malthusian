@@ -1,5 +1,80 @@
-#simulation{
+.flex-container {
+    display: flex;
+}
+
+.flex-container-ver {
+    display:flex;
+    flex-direction: column;
+}
+#canvas{
     width: 500px;
     height: 200px;
-    border: 1px solid black
+    background-color:cornsilk;
+    margin: 20px;
+}
+
+#yearButtons {
+    width: 500px;
+    justify-content: space-evenly;
+}
+
+#disruptionButtons {
+    width:500px;
+    justify-content: space-evenly;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#stats {
+    margin: 5px;
+}
+#stats > * {
+    line-height: 0em;
+}
+.h1 {
+    padding: 30px;
+    line-height: 10px;
+}
+.p {
+    text-align: left;
+}
+.redtext {
+    color: red;
+}
+
+#legend {
+    position: fixed;
+    padding: 15px;
+    width: 200px;
+    height: 400px;
+    overflow-wrap: break-word;
+    color:cornflowerblue;
+    background-color:seashell;
+}
+
+#notes {
+    color: black;
+    width: 200px;
+}
+
+#observations {
+    position: fixed;
+    top: 85px;
+    right: 0px;
+    width: 225px;
+    padding: 15px;
+    width: 200px;
+    height: 400px;
+    overflow-wrap: break-word;
+    color:darkcyan;
+    background-color:seashell;
+}
+
+#simulation {
+    border: 1px solid black;
+    width: 770px;
+    margin: auto;
 }
