@@ -1,3 +1,7 @@
+button {
+    font-family: serif;
+    font-size: 0.9em;
+}
 .flex-container {
     display: flex;
 }
@@ -6,6 +10,11 @@
     display:flex;
     flex-direction: column;
 }
+
+#population_setter > * {
+    justify-content: left;
+    margin-left: 39px;
+}
 #canvas{
     width: 500px;
     height: 200px;
@@ -13,13 +22,9 @@
     margin: 20px;
 }
 
-#yearButtons {
-    width: 500px;
-    justify-content: space-evenly;
-}
-
 #disruptionButtons {
-    width:500px;
+    margin-top: 20px;
+    width:202px;
     justify-content: space-evenly;
 }
 .center {
@@ -29,15 +34,21 @@
 }
 
 #stats {
-    margin: 5px;
+    margin-top: 21px;
+    width: 170px;
+    padding-left: 17px;
+    padding-right: 17px;
+    height: 200px;
+    border: 3px solid cornsilk;
+    line-height: 0px;
 }
 #stats > * {
     line-height: 0em;
 }
 .h1 {
     padding: 30px;
-    line-height: 10px;
 }
+
 .p {
     text-align: left;
 }
@@ -47,9 +58,11 @@
 
 #legend {
     position: fixed;
+    left:0;
+    top:0;
     padding: 15px;
     width: 200px;
-    height: 400px;
+    height: 100vh;
     overflow-wrap: break-word;
     color:cornflowerblue;
     background-color:seashell;
@@ -61,13 +74,12 @@
 }
 
 #observations {
-    position: fixed;
-    top: 85px;
-    right: 0px;
-    width: 225px;
+    position: fixed;  
+    right:0;
+    top:0;
     padding: 15px;
     width: 200px;
-    height: 400px;
+    height: 100vh;
     overflow-wrap: break-word;
     color:darkcyan;
     background-color:seashell;
@@ -77,4 +89,24 @@
     border: 1px solid black;
     width: 770px;
     margin: auto;
+    padding-right: 13px;
+}
+
+#popu_year {
+    justify-content: left;
+}
+
+#creditDiv {
+    text-align: center;
+    font-size:x-small;
+    color:black;
+    line-height: 0.7em;
+}
+
+#chineseName {
+    font-family: 楷体;
+}
+
+#citationDiv {
+    color:black;
 }

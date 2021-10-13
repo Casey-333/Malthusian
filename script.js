@@ -1,3 +1,76 @@
+// chart setup
+var context = document.getElementById("myChart").getContext("2d");
+
+var chartLabels = []
+var popuChartData = [];
+var incomeChartData = [];
+
+function updateChart() {
+    chartLabels.push(time);
+    popuChartData.push(population);
+    incomeChartData.push(perPersonIncome);
+
+    myChart.data.labels = chartLabels;
+    myChart.data.datasets[0].data = popuChartData;
+    myChart.data.datasets[1].data = incomeChartData;
+
+    myChart.update();
+}
+var myChart = new Chart(context, {
+    type: 'line',
+    data: {
+        labels: chartLabels,
+        datasets: [
+            {
+                label: "Population",
+                data: popuChartData,
+                backgroundColor:"cornflowerblue",
+                borderColor:"cornflowerblue",
+                yAxisID:"Ypopulation"
+            },
+            {
+                label: "Per Person Income",
+                data: incomeChartData,
+                backgroundColor:"darkcyan",
+                borderColor:"darkcyan",
+                yAxisID:"Yppincome"
+            }
+        ]
+    },
+    options: {
+        legend: {
+            position:"right"
+        },
+        scales: {
+            Ypopulation: {
+                title: {
+                    display: true,
+                    text: 'Population'
+                  },
+                min:0,
+                max:12000,
+                type: 'linear',
+                display: true,
+                position: 'left',
+                ticks: {stepSize: 3000}
+            },
+            Yppincome: {
+                title: {
+                    display: true,
+                    text: 'Per Person Income'
+                  },
+                min: 0,
+                max: 21,
+                type: 'linear',
+                display: true,
+                position: 'right',
+                ticks: {stepSize: 5},
+                grid: {drawOnChartArea: false},
+            }
+              }
+        }
+});
+
 //canvas setup
 function canvasSetup() {
     const canvas = document.querySelector("#canvas");
@@ -74,7 +147,6 @@ function setPopulation(popu) {
     loadYear(0);
     drawPopu(population,perPersonIncome);
     time++;
-    
 }
 //drawing dot
 function drawCircle(xPos, yPos, radius, color) {
@@ -88,7 +160,7 @@ function drawCircle(xPos, yPos, radius, color) {
 }
 
 function drawPopu(popu, income) {
-    var color = "#3399FF";
+    var color = "cornflowerblue";
     var radius = 2.5+0.8*(income-12);
     for(var n=0; n<(popu/10); n++) {
         var xPos = Math.random()*canvas.width;
@@ -105,25 +177,26 @@ function clearCanvas() {
 
 //simulation manipulation functions
 function nextYear() {
-    if (record.length > time + 1) {
-        loadYear(time+1);
-        refreshStats();
-        clearCanvas();
-        drawPopu(population,perPersonIncome);
-        time++;
-    } else {
+    // if (record.length > time + 1) {
+    //     loadYear(time+1);
+    //     refreshStats();
+    //     clearCanvas();
+    //     drawPopu(population,perPersonIncome);
+    //     time++;
+    // } else {
         population = Math.round(population * (birthrate - 0.05 + 0.1*Math.random()));
         totalIncome = Math.round(techMultiplier * calculateOutput(population));
         perPersonIncome = totalIncome / population;
         perPersonIncome = Math.round((perPersonIncome + Number.EPSILON) * 100) / 100
         birthrate = calculateBirth(perPersonIncome);
         refreshStats();
+        updateChart();
         clearCanvas();
         drawPopu(population,perPersonIncome);
         recordYear();
         time++;
         
-    }
+    // }
 }
 
 function lastYear() {
@@ -145,7 +218,8 @@ function techImprovement() {
 }
 
 function disease() {
-    population = Math.round(population*0.66);
+    population = Math.round(population*0.7);
     refreshStats();
 }
+
 

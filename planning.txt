@@ -1,0 +1,31 @@
+functions:
+    start game / setup position
+    set population
+    next year
+    previous year
+    tech improvement
+    disease
+variables:
+    technology multiplier
+    total income = (population,technology multiplier)
+    per person income = (total income, population)
+    birth rate = (per person income)
+    population = (birthrate, population with that birth rate])
+    time += 1
+    
+storages:
+    list of year objects
+
+
+//defining outputs that can be refreshed
+var yearStat = document.getElementById("Year_");
+var popuStat = document.getElementById("Popu_");
+var techStat = document.getElementById("Tech_");
+var tIncomeStat = document.getElementById("tIncome_");
+var ppIncomeStat = document.getElementById("ppIncome_");
+var birthStat = document.getElementById("Birth_");
+
+
+<!-- <div id="lastYearButton">
+<button id="lastYear" onclick="lastYear()">Last Year</button>
+</div> -->
